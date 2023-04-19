@@ -15,6 +15,14 @@ final class RouteModuleProvider extends ServiceProvider
 {
     public function boot(): void
     {
+        $this->publishRoutes();
+        $this->publishes([
+            __DIR__ . '/../config/route-moduler.php' => base_path('config/route-moduler.php')
+        ]);
+    }
+
+    private function publishRoutes(): void
+    {
         $provider = new ModuleProvider($this->app->make('config'));
         $grouper  = new RouteGrouper($provider);
 
