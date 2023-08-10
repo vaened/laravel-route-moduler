@@ -26,7 +26,7 @@ final class RouteModuleProvider extends ServiceProvider
         $provider = new ModuleProvider($this->app->make('config'));
         $grouper  = new RouteGrouper($provider);
 
-        ArrayList::from($grouper->routeModules())
+        (new ArrayList($grouper->routeModules()))
             ->each(
                 fn(RouteFile $route) => Route::middleware($route->middleware())
                     ->prefix($route->prefix())

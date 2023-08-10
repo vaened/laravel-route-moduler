@@ -18,13 +18,13 @@ class RouteGrouper
     {
     }
 
-    public function routeModules(): array
+    public function routeModules(): iterable
     {
         return $this->provider->modules()
             ->flatMap(function (Module $module): array {
                 $files = $this->getRoutesModule($module->path());
 
-                return ArrayList::from($files)
+                return (new ArrayList($files))
                     ->filter(static fn(SplFileInfo $file) => !$file->isDir())
                     ->map(static fn(SplFileInfo $file) => new RouteFile($module, $file))
                     ->items();
