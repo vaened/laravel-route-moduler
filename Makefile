@@ -6,6 +6,9 @@ IMAGE=$(notdir $(patsubst %/,%,$(current-dir)))
 build: deps
 	docker build -t $(IMAGE) .
 
+run:
+	docker run --rm -v $(PWD):/app -w /app $(IMAGE) $(COMMANDS);
+
 .PHONY: clean
 clean:
 	docker rmi $(IMAGE)
