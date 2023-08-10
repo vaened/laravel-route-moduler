@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         bootstrap="vendor/autoload.php"
          backupGlobals="false"
          cacheResult="false"
-         backupStaticAttributes="false"
          colors="true"
-         verbose="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
-    <coverage>
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.1/phpunit.xsd"
+         cacheDirectory=".phpunit.cache" backupStaticProperties="false">
+    <coverage/>
+    <testsuites>
+        <testsuite name="Suit test">
+            <directory>./tests/</directory>
+        </testsuite>
+    </testsuites>
+    <source>
         <include>
             <directory>./src</directory>
         </include>
@@ -20,10 +21,5 @@
             <directory>./vendor</directory>
             <directory>./tests</directory>
         </exclude>
-    </coverage>
-    <testsuites>
-        <testsuite name="Suit test">
-            <directory>./tests/</directory>
-        </testsuite>
-    </testsuites>
+    </source>
 </phpunit>
