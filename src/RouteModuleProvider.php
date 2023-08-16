@@ -9,16 +9,15 @@ namespace Vaened\LaravelRouteModuler;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
-use Vaened\Support\Types\ArrayList;
 
 final class RouteModuleProvider extends ServiceProvider
 {
     public function boot(): void
     {
         $this->publishRoutes();
-        $this->publishes([
-            __DIR__ . '/../config/route-moduler.php' => base_path('config/route-moduler.php')
-        ]);
+        $this->publishes(
+            [__DIR__ . '/../config/route-moduler.php' => base_path('config/route-moduler.php')]
+        );
     }
 
     private function publishRoutes(): void
@@ -26,11 +25,11 @@ final class RouteModuleProvider extends ServiceProvider
         $provider = new ModuleProvider($this->app->make('config'));
         $grouper  = new RouteGrouper($provider);
 
-        (new ArrayList($grouper->routeModules()))
-            ->each(
-                fn(RouteFile $route) => Route::middleware($route->middleware())
-                    ->prefix($route->prefix())
-                    ->group($route->path())
-            );
+        $grouper->routeModules()
+                ->each(
+                    fn(RouteFile $route) => Route::middleware($route->middleware())
+                                                 ->prefix($route->prefix())
+                                                 ->group($route->path())
+                );
     }
 }
