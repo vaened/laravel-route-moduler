@@ -11,11 +11,6 @@ use Vaened\Support\Types\SecureList;
 
 final class Modules extends SecureList
 {
-    public static function from(iterable $modules): self
-    {
-        return new self($modules);
-    }
-
     protected static function type(): string
     {
         return Module::class;

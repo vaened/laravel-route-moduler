@@ -10,13 +10,20 @@ namespace Vaened\LaravelRouteModuler;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
+use function sprintf;
+
 final class RouteModuleProvider extends ServiceProvider
 {
+    public const CONFIG_FILE = 'route-moduler';
+
     public function boot(): void
     {
         $this->publishRoutes();
+
+        $config = sprintf('config/%s.php', self::CONFIG_FILE);
+
         $this->publishes(
-            [__DIR__ . '/../config/route-moduler.php' => base_path('config/route-moduler.php')]
+            [sprintf('%s/../%s', __DIR__, $config) => base_path($config)]
         );
     }
 
