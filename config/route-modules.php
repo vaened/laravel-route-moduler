@@ -7,9 +7,18 @@ return [
         | Module path
         |--------------------------------------------------------------------------
         |
-        | path where the files with the configuration of the paths belonging to the
-        | module are located.
+        | The path where the route configuration files for this module are located.
         |
+        | You can specify either a directory, in which case all .php files in that directory will be
+        | treated as route files, or a single file without the .php extension.
+        |
+        | Examples:
+        |
+        | Load all routes in directory
+        | path: 'routes/modules'
+        |
+        | Single route file
+        | path: 'routes/users.php'
         */
         'path'       => 'routes/modules',
 
