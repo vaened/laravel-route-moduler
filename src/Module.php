@@ -7,7 +7,9 @@ declare(strict_types=1);
 
 namespace Vaened\LaravelRouteModuler;
 
-use function is_array;
+use Illuminate\Support\Str;
+
+use function base_path;
 
 final class Module
 {
@@ -22,12 +24,12 @@ final class Module
 
     public function isSingleFile(): bool
     {
-        return false;
+        return Str::endsWith($this->path, '.php');
     }
 
     public function path(): string
     {
-        return $this->path;
+        return base_path($this->path);
     }
 
     public function prefix(): ?string

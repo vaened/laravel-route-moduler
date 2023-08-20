@@ -29,8 +29,9 @@ final class RouteModuleProvider extends ServiceProvider
 
     private function publishRoutes(): void
     {
-        $provider = new ModuleProvider($this->app->make('config'));
-        $grouper  = new RouteGrouper($provider);
+        $moduleProvider = new ModuleProvider($this->app->make('config'));
+        $filesProvider  = new FilesProvider($moduleProvider);
+        $grouper        = new RouteGrouper($filesProvider);
 
         $grouper->routeModules()
                 ->each(
