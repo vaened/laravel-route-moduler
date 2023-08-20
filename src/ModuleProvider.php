@@ -10,6 +10,7 @@ namespace Vaened\LaravelRouteModuler;
 use Illuminate\Config\Repository as Config;
 
 use function array_map;
+use function is_array;
 
 final class ModuleProvider
 {
@@ -29,11 +30,16 @@ final class ModuleProvider
 
     private static function toModule(): callable
     {
-        return static fn(array $setting) => new Module(
-            $setting['path'],
-            $setting['prefix'],
-            $setting['named'],
-            $setting['middleware'],
+        return static fn(array $module) => new Module(
+            $module['path'],
+            $module['prefix'] ?? null,
+            isset($module['named']) && $module['named'],
+            isset($module['middleware']) ? self::wrap($module['middleware']) : [],
         );
+    }
+
+    private static function wrap(mixed $value): array
+    {
+        return is_array($value) ? $value : [$value];
     }
 }

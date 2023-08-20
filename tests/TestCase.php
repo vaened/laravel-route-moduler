@@ -17,7 +17,7 @@ class TestCase extends BaseTestCase
         $app->setBasePath(__DIR__);
 
         $app->make('config')
-            ->set('route-moduler', [
+            ->set(RouteModuleProvider::CONFIG_FILE, [
                 [
                     'path'       => 'routes/api',
                     'prefix'     => 'api',

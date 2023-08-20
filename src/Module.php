@@ -7,6 +7,8 @@ declare(strict_types=1);
 
 namespace Vaened\LaravelRouteModuler;
 
+use function is_array;
+
 final class Module
 {
     public function __construct(
@@ -14,7 +16,13 @@ final class Module
         private readonly ?string $prefix,
         private readonly bool    $named,
         private readonly array   $middleware
-    ) {
+    )
+    {
+    }
+
+    public function isSingleFile(): bool
+    {
+        return false;
     }
 
     public function path(): string
