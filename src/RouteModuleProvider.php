@@ -14,7 +14,7 @@ use function sprintf;
 
 final class RouteModuleProvider extends ServiceProvider
 {
-    public const CONFIG_FILE = 'route-moduler';
+    public const CONFIG_FILE = 'route-modules';
 
     public function boot(): void
     {
