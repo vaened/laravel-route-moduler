@@ -23,7 +23,8 @@ final class RouteModuleProvider extends ServiceProvider
         $config = sprintf('config/%s.php', self::CONFIG_FILE);
 
         $this->publishes(
-            [sprintf('%s/../%s', __DIR__, $config) => base_path($config)]
+            [sprintf('%s/../%s', __DIR__, $config) => base_path($config)],
+            'route-moduler-config'
         );
     }
 
