@@ -30,6 +30,18 @@ class TestCase extends BaseTestCase
                     'named'      => true,
                     'middleware' => ['web']
                 ],
+                [
+                    'path'       => 'routes/module.php',
+                    'prefix'     => null,
+                    'named'      => true,
+                    'middleware' => []
+                ],
+                [
+                    'path'       => 'routes/module.php',
+                    'prefix'     => 'prefixed',
+                    'named'      => false,
+                    'middleware' => []
+                ],
             ]);
     }
 
