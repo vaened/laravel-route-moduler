@@ -28,21 +28,13 @@ jobs:
       - name: Setup Problem Matchers
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-      - name: Select Laravel 10
+      - name: Select Laravel ${{ matrix.laravel }}
+        if: matrix.laravel == '10' || (matrix.laravel == '11' && matrix.php == '8.2')
         uses: nick-invision/retry@v2
         with:
           timeout_minutes: 5
           max_attempts: 5
-          command: composer require "laravel/framework:10.*" --no-update --no-interaction
-        if: "matrix.laravel == '10' && (matrix.php == '8.1' || matrix.php == '8.2')"
-
-      - name: Select Laravel 11
-        uses: nick-invision/retry@v2
-        with:
-          timeout_minutes: 5
-          max_attempts: 5
-          command: composer require "laravel/framework:11.*" --no-update --no-interaction
-        if: "matrix.laravel == '11' && matrix.php == '8.2'"
+          command: composer require "laravel/framework:${{ matrix.laravel }}.*" --no-update --no-interaction
 
       - name: Install dependencies
         uses: nick-invision/retry@v2
@@ -51,5 +43,10 @@ jobs:
           max_attempts: 5
           command: composer update --no-interaction --no-progress --ignore-platform-req=php
 
-      - name: Execute PHPUnit
+      - name: Run tests for Laravel 10
+        if: matrix.laravel == '10'
+        run: vendor/bin/phpunit
+
+      - name: Run tests for Laravel 11
+        if: matrix.laravel == '11' && matrix.php == '8.2'
         run: vendor/bin/phpunit
