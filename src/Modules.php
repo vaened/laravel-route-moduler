@@ -11,7 +11,7 @@ use Vaened\Support\Types\SecureList;
 
 final class Modules extends SecureList
 {
-    protected static function type(): string
+    public static function type(): string
     {
         return Module::class;
     }
