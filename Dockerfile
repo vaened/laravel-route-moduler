@@ -1,4 +1,4 @@
-FROM php:8.1-cli
+FROM php:8.2.1-cli
 
 WORKDIR /app
 
