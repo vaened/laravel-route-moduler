@@ -5,7 +5,7 @@
 Separate laravel routes by modules and submodules
 
 ```markdown
-├── routes
+└── routes
     └── api
         └── clients.php
         └── payments.php
@@ -14,7 +14,7 @@ Separate laravel routes by modules and submodules
 
 ## Installation
 
-Laravception requires PHP 8.2. To get the latest version, simply require the project using Composer:
+Laravel Route Moduler requires PHP 8.2. To get the latest version, simply require the project using Composer:
 
 ```bash
 composer require vaened/laravel-route-moduler
@@ -38,7 +38,7 @@ Once the library is installed, you can start organizing your routes within the /
 ### Multiple Modules
 The [route-modules.php](./config/route-modules.php) configuration file returns an array for a single module setup. However, you can configure as many modules as you need by extending this array.
 ```markdown
-├── routes
+└── routes
     └── api
     └── web
     └── app
