@@ -24,7 +24,7 @@ final class RouteModuleProvider extends ServiceProvider
 
         $this->publishes(
             [sprintf('%s/../%s', __DIR__, $config) => base_path($config)],
-            'route-moduler-config'
+            'laravel-route-moduler'
         );
     }
 
